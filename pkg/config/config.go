@@ -22,7 +22,7 @@ func NewConfig() (c Config, err error) {
 		return
 	}
 
-	err =viper.Unmarshal(&c)
+	err = viper.Unmarshal(&c)
 
 	return
 }

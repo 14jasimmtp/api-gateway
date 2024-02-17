@@ -8,23 +8,25 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type FindOneRequestbody struct{
+type DecreaseStockRequestbody struct{
 	Pid int64
+	OdId int64
 }
 
-func FindOne(c *gin.Context,p pb.ProductServiceClient){
-	body:=FindOneRequestbody{}
+func DecreaseStock(c *gin.Context,p pb.ProductServiceClient){
+	body:=DecreaseStockRequestbody{}
 
-	if err := c.BindJSON(body); err != nil{
+	if err := c.BindJSON(&body); err!= nil{
 		c.AbortWithError(http.StatusBadRequest,err)
 		return
 	}
 
-	resp,err:=p.FindOne(context.Background(),&pb.FindOneRequest{
+	resp,err:=p.DecreaseStock(context.Background(),&pb.DecreaseStockRequest{
 		Id: body.Pid,
+		OrderId: body.OdId,
 	})
 
-	if err != nil {
+	if err != nil{
 		c.AbortWithError(http.StatusBadRequest,err)
 		return
 	}
