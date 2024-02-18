@@ -9,13 +9,13 @@ import (
 )
 
 type FindOneRequestbody struct{
-	Pid int64
+	Pid int64 
 }
 
 func FindOne(c *gin.Context,p pb.ProductServiceClient){
 	body:=FindOneRequestbody{}
 
-	if err := c.BindJSON(body); err != nil{
+	if err := c.BindJSON(&body); err != nil{
 		c.AbortWithError(http.StatusBadRequest,err)
 		return
 	}

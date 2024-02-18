@@ -32,5 +32,5 @@ func CreateOrder(c *gin.Context,p pb.OrderServiceClient){
 		return
 	}
 
-	c.JSON(http.StatusOK,&resp)
+	c.JSON(int(resp.Status),&resp)
 }
