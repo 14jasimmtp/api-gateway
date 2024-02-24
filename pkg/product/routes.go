@@ -17,7 +17,6 @@ func ProductRoutes(r *gin.Engine, c *config.Config, authSvc *auth.ServiceClient)
 	routes := r.Group("/product")
 	routes.Use(a.AuthRequired)
 	routes.POST("/add-product", svc.CreateProduct)
-	routes.POST("/decrease-stock", svc.DecreaseStock)
 	routes.GET("/find", svc.FindOne)
 }
 

@@ -11,7 +11,7 @@ import (
 type CreateOrderRequest struct{
 	ProductId int64
 	Quantity int64
-	OrderId int64
+	UserId int64
 }
 
 func CreateOrder(c *gin.Context,p pb.OrderServiceClient){
@@ -24,7 +24,7 @@ func CreateOrder(c *gin.Context,p pb.OrderServiceClient){
 	resp,err:=p.CreateOrder(context.Background(),&pb.CreateOrderRequest{
 		ProductId: body.ProductId,
 		Quantity: body.Quantity,
-		OrderId: body.OrderId,
+		OrderId: body.UserId,
 	})
 
 	if err != nil {
